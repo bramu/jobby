@@ -1,13 +1,13 @@
 {
-  "name": "hellogerard/jobby",
+  "name": "atom/jobby",
   "homepage": "https://github.com/jobbyphp/jobby",
   "license": "MIT",
   "description": "Manage all your cron jobs without modifying crontab. Handles locking, logging, error emails, and more.",
   "authors": [
     {
       "name": "Gerard Sychay",
-      "email": "hellogerard@gmail.com",
-      "homepage": "https://github.com/hellogerard"
+      "email": "ramu@atom.com",
+      "homepage": "https://github.com/bramu"
     },
     {
       "name": "Michael Contento",
