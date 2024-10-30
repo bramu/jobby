@@ -151,11 +151,19 @@ class BackgroundJob
             return;
         }
 
-        $this->helper->sendMail(
-            $this->job,
-            $this->config,
-            $message
-        );
+	if($this->config['notificationSender'] == 'ses_mailer'){
+	   $this->helper->sendMailFromSES(
+             $this->job,
+             $this->config,
+             $message
+          );
+	}else {
+           $this->helper->sendMail(
+             $this->job,
+             $this->config,
+             $message
+           );
+        }
     }
 
     /**

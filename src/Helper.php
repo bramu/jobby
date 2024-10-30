@@ -1,6 +1,9 @@
 <?php
 namespace Jobby;
 
+use SimpleEmailService;
+use SimpleEmailServiceMessage;
+
 class Helper
 {
     /**
@@ -61,6 +64,23 @@ EOF;
 
         return $mail;
     }
+
+    public function sendMailFromSES($job, array $config, $message){
+	$host = $this->getHost();
+	$body = $message;
+	
+        $m = new SimpleEmailServiceMessage();
+        $m->addTo(explode(',', $config['recipients']));
+
+        $m->setFrom($config['smtpSender']);
+        $m->setSubject("[$host] '{$job}' needs some attention!");
+        $m->setMessageFromString(null, $body);
+
+        $ses = new SimpleEmailService($config['smtpUsername'], $config['smtpPassword']);
+        $mailResponse = $ses->sendEmail($m);
+
+	return $mailResponse;
+   }
 
     /**
      * @param array $config
